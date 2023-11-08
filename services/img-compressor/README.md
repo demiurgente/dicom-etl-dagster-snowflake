@@ -1,6 +1,6 @@
 # Image Compression from DICOM files
 
-This project contains a service that allows converting raw pixel data into an image with a specified type. The main use case is to download raw **DICOM** files from **S3**, iterate over a list of **DICOM** files, convert them to JPEG images, and upload them to the remote **S3** bucket location. Supports built-in parallel execution with `rayon` which will map conversion jobs onto the available number of CPUs. It is useful to quickly prototype an image converter that would serve as a dynamic compression routine. The project is organised to be deployed to **AWS Lambda** and used as a remote processing unit
+This project contains a service that allows converting raw pixel data into an image with a specified type. The main use case is to download raw **DICOM** files from **S3**, iterate over a list of **DICOM** files, convert them to JPEG images, and upload them to the remote **S3** bucket location. Supports built-in parallel execution with `rayon` which will map conversion jobs onto the available number of CPUs. It is useful to quickly prototype an image converter that would serve as a dynamic compression routine. The project is organized to be deployed to **AWS Lambda** and used as a remote processing unit
 
 ## Core Functionality
 
@@ -30,4 +30,4 @@ In order to launch a Lambda job you would need to provide information correspond
 
 ## Image Compression Presets
 
-The current setting is hardcoded to `Luma8`` grayscale and JPEG format for compression
+The current setting is hardcoded to `Luma8` grayscale and JPEG format for compression
