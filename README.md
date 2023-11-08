@@ -29,7 +29,7 @@ After the list of entities is evaluated we can decide how to process data based 
 ```
 unique_key=[
 	'other_patient_ids',
-    'patient_age',
+   	'patient_age',
 	'patient_birth_date',
 	'patient_id',
 	'patient_name',
