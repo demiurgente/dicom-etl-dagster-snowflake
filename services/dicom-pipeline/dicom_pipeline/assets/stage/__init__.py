@@ -1,0 +1,1 @@
+from .compressed_images import compressed_images

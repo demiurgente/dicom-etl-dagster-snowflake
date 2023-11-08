@@ -1,0 +1,255 @@
+version: 2
+
+models:
+  - name: processed_series
+    description: "Series data without PII sensitive information"
+    columns:
+      - name: body_part_examined
+        description: "Body Part Examined"
+        data_type: "varchar(16)"
+      - name: device_serial_number
+        description: "Device Serial Number"
+        data_type: "varchar(64)"
+      - name: filename
+        description: "Dicom file location"
+        data_type: "varchar(180)"
+      - name: frame_of_reference_uid
+        description: "Frame of Reference UID"
+        data_type: "varchar(64)"
+      - name: modality
+        description: "Modality"
+        data_type: "varchar(16)"
+      - name: performed_procedure_step_description
+        description: "Performed Procedure Step Description"
+        data_type: "varchar(64)"
+      - name: performed_procedure_step_id
+        description: "Performed Procedure Step ID"
+        data_type: "varchar(16)"
+      - name: performed_procedure_step_start_date
+        description: "Performed Procedure Step Start Date"
+        data_type: "varchar(8)"
+      - name: performed_procedure_step_start_time
+        description: "Performed Procedure Step Start Time"
+        data_type: "varchar(14)"
+      - name: performing_physician_name
+        description: "Performing Physician's Name"
+        data_type: "varchar(64)"
+      - name: position_reference_indicator
+        description: "Position Reference Indicator"
+        data_type: "varchar(64)"
+      - name: protocol_name
+        description: "Protocol Name"
+        data_type: "varchar(64)"
+      - name: referenced_performed_procedure_step_sequence
+        description: "Referenced Performed Procedure Step Sequence"
+        data_type: "json[]"
+      - name: related_series_sequence
+        description: "Related Series Sequence"
+        data_type: "json[]"
+      - name: request_attributes_sequence
+        description: "Request Attributes Sequence"
+        data_type: "json[]"
+      - name: series_date
+        description: "Series Date"
+        data_type: "date"
+      - name: series_description
+        description: "Series Description"
+        data_type: "varchar(64)"
+      - name: series_instance_uid
+        description: "Series Instance UID"
+        data_type: "varchar(64)"
+      - name: series_number
+        description: "Series Number"
+        data_type: "bigint"
+      - name: series_time
+        description: "Series Time"
+        data_type: "varchar(14)"
+      - name: study_date
+        description: "Study Date"
+        data_type: "date"
+
+  - name: processed_studies
+    description: "Study data without PII sensitive information"
+    columns:
+      - name: accession_number
+        description: "Accession Number"
+        data_type: "varchar(16)"
+      - name: additional_patient_history
+        description: "Additional Patient History"
+        data_type: "varchar(10240)"
+      - name: admitting_diagnoses_description
+        description: "Admitting Diagnoses Description"
+        data_type: "varchar(64)"
+      - name: filename
+        description: "Dicom file location"
+        data_type: "varchar(180)"
+      - name: last_menstrual_date
+        description: "Last Menstrual Date"
+        data_type: "varchar(8)"
+      - name: medical_alerts
+        description: "Medical Alerts"
+        data_type: "varchar(64)"
+      - name: medical_record_locator
+        description: "Medical Record Locator"
+        data_type: "varchar(64)"
+      - name: name_of_physicians_reading_study
+        description: "Name of Physician(s) Reading Study"
+        data_type: "varchar(64)"
+      - name: patient_id
+        description: "Patient ID"
+        data_type: "varchar(64)"
+      - name: patient_state
+        description: "Patient State"
+        data_type: "varchar(64)"
+      - name: physicians_of_record
+        description: "Physician(s) of Record"
+        data_type: "varchar(64)"
+      - name: referring_physician_name
+        description: "Referring Physician's Name"
+        data_type: "varchar(64)"
+      - name: requested_procedure_description
+        description: "Requested Procedure Description"
+        data_type: "varchar(64)"
+      - name: requesting_physician
+        description: "Requesting Physician"
+        data_type: "varchar(64)"
+      - name: requesting_service
+        description: "Requesting Service"
+        data_type: "varchar(64)"
+      - name: scheduled_study_start_date
+        description: "Scheduled Study Start Date"
+        data_type: "varchar(8)"
+      - name: scheduled_study_start_time
+        description: "Scheduled Study Start Time"
+        data_type: "varchar(14)"
+      - name: series_date
+        description: "Series Date"
+        data_type: "date"
+      - name: special_needs
+        description: "Special Needs"
+        data_type: "varchar(64)"
+      - name: study_comments
+        description: "Study Comments"
+        data_type: "varchar(10240)"
+      - name: study_date
+        description: "Study Date"
+        data_type: "date"
+      - name: study_description
+        description: "Study Description"
+        data_type: "varchar(64)"
+      - name: study_id
+        description: "Study ID"
+        data_type: "varchar(16)"
+      - name: study_instance_uid
+        description: "Study Instance UID"
+        data_type: "varchar(64)"
+
+  - name: processed_devices
+    description: "Device data without PII sensitive information"
+    columns:
+      - name: device_serial_number
+        description: "Device Serial Number"
+        data_type: "varchar(64)"
+      - name: institution_address
+        description: "Institution Address"
+        data_type: "text"
+      - name: institution_name
+        description: "Institution Name"
+        data_type: "varchar(64)"
+      - name: institutional_department_name
+        description: "Institutional Department Name"
+        data_type: "varchar(64)"
+      - name: manufacturer
+        description: "Manufacturer"
+        data_type: "varchar(64)"
+      - name: manufacturer_model_name
+        description: "Manufacturer's Model Name"
+        data_type: "varchar(64)"
+      - name: station_name
+        description: "Station Name"
+        data_type: "varchar(16)"
+
+  - name: processed_patients
+    description: "Patient data after normalization"
+    columns:
+      - name: allergies
+        description: "Allergies"
+        data_type: "varchar(64)"
+      - name: branch_of_service
+        description: "Branch of Service"
+        data_type: "varchar(64)"
+      - name: country_of_residence
+        description: "Country of Residence"
+        data_type: "varchar(64)"
+      - name: date_created
+        description: "Date `%Y%m%d` when dicom file was processed"
+        data_type: "date"
+      - name: ethnic_group
+        description: "Ethnic Group"
+        data_type: "varchar(16)"
+      - name: filename
+        description: "Dicom file location"
+        data_type: "varchar(180)"
+      - name: issuer_of_patient_id
+        description: "Issuer of Patient ID"
+        data_type: "varchar(64)"
+      - name: military_rank
+        description: "Military Rank"
+        data_type: "varchar(64)"
+      - name: occupation
+        description: "Occupation"
+        data_type: "varchar(16)"
+      - name: other_patient_ids
+        description: "Other Patient IDs"
+        data_type: "varchar(64)"
+      - name: other_patient_names
+        description: "Other Patient Names"
+        data_type: "varchar(64)"
+      - name: patient_address
+        description: "Patient's Address"
+        data_type: "varchar(64)"
+      - name: patient_age
+        description: "Patient's Age"
+        data_type: "varchar(4)"
+      - name: patient_birth_date
+        description: "Patient's Birth Date"
+        data_type: "varchar(8)"
+      - name: patient_birth_name
+        description: "Patient's Birth Name"
+        data_type: "varchar(64)"
+      - name: patient_birth_time
+        description: "Patient's Birth Time"
+        data_type: "varchar(14)"
+      - name: patient_comments
+        description: "Patient Comments"
+        data_type: "varchar(10240)"
+      - name: patient_id
+        description: "Patient ID"
+        data_type: "varchar(64)"
+      - name: patient_mother_birth_name
+        description: "Patient's Mother's Birth Name"
+        data_type: "varchar(64)"
+      - name: patient_name
+        description: "Patient's Name"
+        data_type: "varchar(64)"
+      - name: patient_religious_preference
+        description: "Patient's Religious Preference"
+        data_type: "varchar(64)"
+      - name: patient_sex
+        description: "Patient's Sex"
+        data_type: "varchar(16)"
+      - name: patient_size
+        description: "Patient's Size"
+        data_type: "float"
+      - name: patient_telephone_numbers
+        description: "Patient's Telephone Numbers"
+        data_type: "varchar(16)"
+      - name: patient_weight
+        description: "Patient's Weight"
+        data_type: "float"
+      - name: region_of_residence
+        description: "Region of Residence"
+        data_type: "varchar(64)"
+      - name: smoking_status
+        description: "Smoking Status"
+        data_type: "varchar(16)"

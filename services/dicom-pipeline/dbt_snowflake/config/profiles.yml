@@ -1,0 +1,6 @@
+dbt_snowflake:
+  target: local
+  outputs:
+    local:
+      type: duckdb
+      path: "{{ env_var('DBT_DATABASE_NAME') }}"

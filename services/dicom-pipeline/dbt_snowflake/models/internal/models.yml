@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: surrogate_key_mapping
+    description: "Table that maps multiple columns to unique identifier value (composed key mapping)"
+    columns:
+      - name: schema_name
+        description: "Schema for composed key"
+        data_type: "varchar(20)"
+      - name: table_name
+        description: "Table for composed key"
+        data_type: "varchar(20)"
+      - name: column_name
+        description: "Target key column"
+        data_type: "varchar(20)"
+      - name: include_columns
+        description: "Columns to include in composed key"
+        data_type: "varchar(20)"

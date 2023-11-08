@@ -1,0 +1,532 @@
+version: 2
+
+models:
+  - name: staged_images
+    description: "Image data without PII sensitive information"
+    columns:
+      - name: acquisition_date
+        description: "Acquisition Date"
+        data_type: "varchar"
+      - name: acquisition_duration
+        description: "Acquisition Duration"
+        data_type: "float"
+      - name: acquisition_matrix
+        description: "Acquisition Matrix"
+        data_type: "usmallint"
+      - name: acquisition_number
+        description: "Acquisition Number"
+        data_type: "bigint"
+      - name: acquisition_time
+        description: "Acquisition Time"
+        data_type: "varchar"
+      - name: angio_flag
+        description: "Angio Flag"
+        data_type: "varchar"
+      - name: beat_rejection_flag
+        description: "Beat Rejection Flag"
+        data_type: "varchar"
+      - name: bits_allocated
+        description: "Bits Allocated"
+        data_type: "usmallint"
+      - name: bits_stored
+        description: "Bits Stored"
+        data_type: "usmallint"
+      - name: burned_in_annotation
+        description: "Burned In Annotation"
+        data_type: "varchar"
+      - name: columns
+        description: "Columns"
+        data_type: "usmallint"
+      - name: content_date
+        description: "Content Date"
+        data_type: "varchar"
+      - name: content_qualification
+        description: "Content Qualification"
+        data_type: "varchar"
+      - name: content_time
+        description: "Content Time"
+        data_type: "varchar"
+      - name: contrast_bolus_volume
+        description: "Contrast/Bolus Volume"
+        data_type: "float"
+      - name: echo_numbers
+        description: "Echo Number(s)"
+        data_type: "bigint"
+      - name: echo_time
+        description: "Echo Time"
+        data_type: "float"
+      - name: echo_train_length
+        description: "Echo Train Length"
+        data_type: "bigint"
+      - name: filename
+        description: "Dicom file location"
+        data_type: "varchar(180)"
+      - name: flip_angle
+        description: "Flip Angle"
+        data_type: "float"
+      - name: geometry_of_k_space_traversal
+        description: "Geometry of k-Space Traversal"
+        data_type: "varchar"
+      - name: heart_rate
+        description: "Heart Rate"
+        data_type: "bigint"
+      - name: high_bit
+        description: "High Bit"
+        data_type: "usmallint"
+      - name: high_rr_value
+        description: "High R-R Value"
+        data_type: "bigint"
+      - name: image_comments
+        description: "Image Comments"
+        data_type: "varchar"
+      - name: image_orientation_patient
+        description: "Image Orientation (Patient)"
+        data_type: "float"
+      - name: image_position_patient
+        description: "Image Position (Patient)"
+        data_type: "float"
+      - name: image_type
+        description: "Image Type"
+        data_type: "varchar"
+      - name: imaged_nucleus
+        description: "Imaged Nucleus"
+        data_type: "varchar"
+      - name: images_in_acquisition
+        description: "Images in Acquisition"
+        data_type: "bigint"
+      - name: imaging_frequency
+        description: "Imaging Frequency"
+        data_type: "float"
+      - name: in_plane_phase_encoding_direction
+        description: "In-plane Phase Encoding Direction"
+        data_type: "varchar"
+      - name: in_stack_position_number
+        description: "In-Stack Position Number"
+        data_type: "uinteger"
+      - name: instance_creation_date
+        description: "Instance Creation Date"
+        data_type: "varchar"
+      - name: instance_creation_time
+        description: "Instance Creation Time"
+        data_type: "varchar"
+      - name: instance_creator_uid
+        description: "Instance Creator UID"
+        data_type: "varchar"
+      - name: instance_number
+        description: "Instance Number"
+        data_type: "bigint"
+      - name: intervals_acquired
+        description: "Intervals Acquired"
+        data_type: "bigint"
+      - name: intervals_rejected
+        description: "Intervals Rejected"
+        data_type: "bigint"
+      - name: inversion_time
+        description: "Inversion Time"
+        data_type: "float"
+      - name: largest_image_pixel_value
+        description: "r SS	Largest Image Pixel Value"
+        data_type: "usmallint"
+      - name: laterality
+        description: "Laterality"
+        data_type: "varchar"
+      - name: lossy_image_compression
+        description: "Lossy Image Compression ()"
+        data_type: "varchar"
+      - name: low_rr_value
+        description: "Low R-R Value"
+        data_type: "bigint"
+      - name: mr_acquisition_type
+        description: "MR Acquisition Type"
+        data_type: "varchar"
+      - name: magnetic_field_strength
+        description: "Magnetic Field Strength"
+        data_type: "float"
+      - name: nominal_interval
+        description: "Nominal Interval"
+        data_type: "bigint"
+      - name: number_of_averages
+        description: "Number of Averages"
+        data_type: "float"
+      - name: number_of_frames
+        description: "Number of Frames"
+        data_type: "bigint"
+      - name: number_of_k_space_trajectories
+        description: "Number of k-Space Trajectories"
+        data_type: "usmallint"
+      - name: number_of_phase_encoding_steps
+        description: "Number of Phase Encoding Steps"
+        data_type: "bigint"
+      - name: parallel_acquisition
+        description: "Parallel Acquisition"
+        data_type: "varchar"
+      - name: parallel_acquisition_technique
+        description: "Parallel Acquisition Technique"
+        data_type: "varchar"
+      - name: patient_position
+        description: "Patient Position"
+        data_type: "varchar"
+      - name: percent_phase_field_of_view
+        description: "Percent Phase Field of View"
+        data_type: "float"
+      - name: percent_sampling
+        description: "Percent Sampling"
+        data_type: "float"
+      - name: photometric_interpretation
+        description: "Photometric Interpretation"
+        data_type: "varchar"
+      - name: pixel_aspect_ratio
+        description: "Pixel Aspect Ratio"
+        data_type: "bigint"
+      - name: pixel_bandwidth
+        description: "Pixel Bandwidth"
+        data_type: "float"
+      - name: pixel_representation
+        description: "Pixel Representation"
+        data_type: "usmallint"
+      - name: pixel_spacing
+        description: "Pixel Spacing"
+        data_type: "float"
+      - name: receive_coil_name
+        description: "Receive Coil Name"
+        data_type: "varchar"
+      - name: reconstruction_diameter
+        description: "Reconstruction Diameter"
+        data_type: "float"
+      - name: rectilinear_phase_encode_reordering
+        description: "Rectilinear Phase Encode Reordering"
+        data_type: "varchar"
+      - name: referenced_image_sequence
+        description: "Referenced Image Sequence"
+        data_type: "varchar[]"
+      - name: repetition_time
+        description: "Repetition Time"
+        data_type: "float"
+      - name: rows
+        description: "Rows"
+        data_type: "usmallint"
+      - name: sar
+        description: "SAR"
+        data_type: "float"
+      - name: sop_class_uid
+        description: "SOP Class UID"
+        data_type: "varchar"
+      - name: sop_instance_uid
+        description: "SOP Instance UID"
+        data_type: "varchar"
+      - name: samples_per_pixel
+        description: "Samples per Pixel"
+        data_type: "usmallint"
+      - name: saturation_recovery
+        description: "Saturation Recovery"
+        data_type: "varchar"
+      - name: scan_options
+        description: "Scan Options"
+        data_type: "varchar"
+      - name: scanning_sequence
+        description: "Scanning Sequence"
+        data_type: "varchar"
+      - name: sequence_name
+        description: "Sequence Name"
+        data_type: "varchar"
+      - name: sequence_variant
+        description: "Sequence Variant"
+        data_type: "varchar"
+      - name: shared_functional_groups_sequence
+        description: "Shared Functional Groups Sequence"
+        data_type: "varchar[]"
+      - name: skip_beats
+        description: "Skip Beats"
+        data_type: "bigint"
+      - name: slice_location
+        description: "Slice Location"
+        data_type: "float"
+      - name: slice_thickness
+        description: "Slice Thickness"
+        data_type: "float"
+      - name: smallest_image_pixel_value
+        description: "r SS	Smallest Image Pixel Value"
+        data_type: "usmallint"
+      - name: spacing_between_slices
+        description: "Spacing Between Slices"
+        data_type: "float"
+      - name: specific_character_set
+        description: "Specific Character Set"
+        data_type: "varchar"
+      - name: stack_id
+        description: "Stack ID"
+        data_type: "varchar"
+      - name: temporal_position_index
+        description: "Temporal Position Index"
+        data_type: "uinteger"
+      - name: transmit_coil_name
+        description: "Transmit Coil Name"
+        data_type: "varchar"
+      - name: trigger_time
+        description: "Trigger Time"
+        data_type: "float"
+      - name: trigger_window
+        description: "Trigger Window"
+        data_type: "bigint"
+      - name: variable_flip_angle_flag
+        description: "Variable Flip Angle Flag"
+        data_type: "varchar"
+      - name: window_center
+        description: "Window Center"
+        data_type: "float"
+      - name: window_center_width_explanation
+        description: "Window Center & Width Explanation"
+        data_type: "varchar"
+      - name: window_width
+        description: "Window Width"
+        data_type: "float"
+      - name: d_bdt
+        description: "dB/dt"
+        data_type: "float"
+
+  - name: staged_series
+    description: "Series data without PII sensitive information"
+    columns:
+      - name: body_part_examined
+        description: "Body Part Examined"
+        data_type: "varchar(16)"
+      - name: device_serial_number
+        description: "Device Serial Number"
+        data_type: "varchar(64)"
+      - name: filename
+        description: "Dicom file location"
+        data_type: "varchar(180)"
+      - name: frame_of_reference_uid
+        description: "Frame of Reference UID"
+        data_type: "varchar(64)"
+      - name: modality
+        description: "Modality"
+        data_type: "varchar(16)"
+      - name: performed_procedure_step_description
+        description: "Performed Procedure Step Description"
+        data_type: "varchar(64)"
+      - name: performed_procedure_step_id
+        description: "Performed Procedure Step ID"
+        data_type: "varchar(16)"
+      - name: performed_procedure_step_start_date
+        description: "Performed Procedure Step Start Date"
+        data_type: "varchar(8)"
+      - name: performed_procedure_step_start_time
+        description: "Performed Procedure Step Start Time"
+        data_type: "varchar(14)"
+      - name: performing_physician_name
+        description: "Performing Physician's Name"
+        data_type: "varchar(64)"
+      - name: position_reference_indicator
+        description: "Position Reference Indicator"
+        data_type: "varchar(64)"
+      - name: protocol_name
+        description: "Protocol Name"
+        data_type: "varchar(64)"
+      - name: referenced_performed_procedure_step_sequence
+        description: "Referenced Performed Procedure Step Sequence"
+        data_type: "json[]"
+      - name: related_series_sequence
+        description: "Related Series Sequence"
+        data_type: "json[]"
+      - name: request_attributes_sequence
+        description: "Request Attributes Sequence"
+        data_type: "json[]"
+      - name: series_date
+        description: "Series Date"
+        data_type: "date"
+      - name: series_description
+        description: "Series Description"
+        data_type: "varchar(64)"
+      - name: series_instance_uid
+        description: "Series Instance UID"
+        data_type: "varchar(64)"
+      - name: series_number
+        description: "Series Number"
+        data_type: "bigint"
+      - name: series_time
+        description: "Series Time"
+        data_type: "varchar(14)"
+      - name: study_date
+        description: "Study Date"
+        data_type: "date"
+
+  - name: staged_studies
+    description: "Study data without PII sensitive information"
+    columns:
+      - name: accession_number
+        description: "Accession Number"
+        data_type: "varchar(16)"
+      - name: additional_patient_history
+        description: "Additional Patient History"
+        data_type: "varchar(10240)"
+      - name: admitting_diagnoses_description
+        description: "Admitting Diagnoses Description"
+        data_type: "varchar(64)"
+      - name: filename
+        description: "Dicom file location"
+        data_type: "varchar(180)"
+      - name: last_menstrual_date
+        description: "Last Menstrual Date"
+        data_type: "varchar(8)"
+      - name: medical_alerts
+        description: "Medical Alerts"
+        data_type: "varchar(64)"
+      - name: medical_record_locator
+        description: "Medical Record Locator"
+        data_type: "varchar(64)"
+      - name: name_of_physicians_reading_study
+        description: "Name of Physician(s) Reading Study"
+        data_type: "varchar(64)"
+      - name: patient_id
+        description: "Patient ID"
+        data_type: "varchar(64)"
+      - name: patient_state
+        description: "Patient State"
+        data_type: "varchar(64)"
+      - name: physicians_of_record
+        description: "Physician(s) of Record"
+        data_type: "varchar(64)"
+      - name: referring_physician_name
+        description: "Referring Physician's Name"
+        data_type: "varchar(64)"
+      - name: requested_procedure_description
+        description: "Requested Procedure Description"
+        data_type: "varchar(64)"
+      - name: requesting_physician
+        description: "Requesting Physician"
+        data_type: "varchar(64)"
+      - name: requesting_service
+        description: "Requesting Service"
+        data_type: "varchar(64)"
+      - name: scheduled_study_start_date
+        description: "Scheduled Study Start Date"
+        data_type: "varchar(8)"
+      - name: scheduled_study_start_time
+        description: "Scheduled Study Start Time"
+        data_type: "varchar(14)"
+      - name: series_date
+        description: "Series Date"
+        data_type: "date"
+      - name: special_needs
+        description: "Special Needs"
+        data_type: "varchar(64)"
+      - name: study_comments
+        description: "Study Comments"
+        data_type: "varchar(10240)"
+      - name: study_date
+        description: "Study Date"
+        data_type: "date"
+      - name: study_description
+        description: "Study Description"
+        data_type: "varchar(64)"
+      - name: study_id
+        description: "Study ID"
+        data_type: "varchar(16)"
+      - name: study_instance_uid
+        description: "Study Instance UID"
+        data_type: "varchar(64)"
+
+  - name: staged_devices
+    description: "Device data without PII sensitive information"
+    columns:
+      - name: device_serial_number
+        description: "Device Serial Number"
+        data_type: "varchar(64)"
+      - name: institution_address
+        description: "Institution Address"
+        data_type: "text"
+      - name: institution_name
+        description: "Institution Name"
+        data_type: "varchar(64)"
+      - name: institutional_department_name
+        description: "Institutional Department Name"
+        data_type: "varchar(64)"
+      - name: manufacturer
+        description: "Manufacturer"
+        data_type: "varchar(64)"
+      - name: manufacturer_model_name
+        description: "Manufacturer's Model Name"
+        data_type: "varchar(64)"
+      - name: station_name
+        description: "Station Name"
+        data_type: "varchar(16)"
+
+  - name: staged_patients
+    description: "Patient data without PII sensitive information"
+    columns:
+      - name: allergies
+        description: "Allergies"
+        data_type: "varchar(64)"
+      - name: branch_of_service
+        description: "Branch of Service"
+        data_type: "varchar(64)"
+      - name: country_of_residence
+        description: "Country of Residence"
+        data_type: "varchar(64)"
+      - name: ethnic_group
+        description: "Ethnic Group"
+        data_type: "varchar(16)"
+      - name: issuer_of_patient_id
+        description: "Issuer of Patient ID"
+        data_type: "varchar(64)"
+      - name: military_rank
+        description: "Military Rank"
+        data_type: "varchar(64)"
+      - name: occupation
+        description: "Occupation"
+        data_type: "varchar(16)"
+      - name: other_patient_ids
+        description: "Other Patient IDs"
+        data_type: "varchar(64)"
+      - name: other_patient_names
+        description: "Other Patient Names"
+        data_type: "varchar(64)"
+      - name: patient_address
+        description: "Patient's Address"
+        data_type: "varchar(64)"
+      - name: patient_age
+        description: "Patient's Age"
+        data_type: "varchar(4)"
+      - name: patient_birth_date
+        description: "Patient's Birth Date"
+        data_type: "varchar(8)"
+      - name: patient_birth_name
+        description: "Patient's Birth Name"
+        data_type: "varchar(64)"
+      - name: patient_birth_time
+        description: "Patient's Birth Time"
+        data_type: "varchar(14)"
+      - name: patient_comments
+        description: "Patient Comments"
+        data_type: "varchar(10240)"
+      - name: patient_id
+        description: "Patient ID"
+        data_type: "varchar(64)"
+      - name: patient_mother_birth_name
+        description: "Patient's Mother's Birth Name"
+        data_type: "varchar(64)"
+      - name: patient_name
+        description: "Patient's Name"
+        data_type: "varchar(64)"
+      - name: patient_religious_preference
+        description: "Patient's Religious Preference"
+        data_type: "varchar(64)"
+      - name: patient_sex
+        description: "Patient's Sex"
+        data_type: "varchar(16)"
+      - name: patient_size
+        description: "Patient's Size"
+        data_type: "float"
+      - name: patient_telephone_numbers
+        description: "Patient's Telephone Numbers"
+        data_type: "varchar(16)"
+      - name: patient_weight
+        description: "Patient's Weight"
+        data_type: "float"
+      - name: region_of_residence
+        description: "Region of Residence"
+        data_type: "varchar(64)"
+      - name: smoking_status
+        description: "Smoking Status"
+        data_type: "varchar(16)"

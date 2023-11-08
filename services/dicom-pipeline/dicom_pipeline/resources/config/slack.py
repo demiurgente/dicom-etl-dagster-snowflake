@@ -1,0 +1,5 @@
+import os
+
+SLACK_TOKEN = os.getenv("SLACK_TOKEN", "")
+SLACK_DEFAULT_CHANNEL = os.getenv("SLACK_DEFAULT_CHANNEL", "")
+SLACK_NOTIFY_JOB_MAP = {}

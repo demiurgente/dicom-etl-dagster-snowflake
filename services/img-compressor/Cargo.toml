@@ -1,0 +1,24 @@
+[package]
+name = "img-compressor"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+aws-config = "0.56.1"
+aws-sdk-s3 = "0.34.0"
+chrono = "0.4"
+dicom-dictionary-std = "0.6.1"
+dicom-object = "0.6.1"
+dicom-pixeldata = { version = "0.2.0", features = ["gdcm", "image", "rayon"]}
+image = "0.24.6"
+lambda_runtime = "0.8.2"
+lazy_static = "1.4.0"
+log = "0.4.20"
+rayon = "1.5"
+serde = { version = "1.0.92", features = ["derive"] }
+serde_derive = "1.0.190"
+serde_json = "1.0.64"
+thiserror = "1.0"
+tokio = { version = "1", features = ["macros"] }
+tracing = { version = "0.1.40", features = ["log"] }
+tracing-subscriber = { version = "0.3.17", default-features = false, features = ["fmt"] }

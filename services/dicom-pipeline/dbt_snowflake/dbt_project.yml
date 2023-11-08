@@ -1,0 +1,46 @@
+name: "dbt_snowflake"
+version: "1.0.0"
+config-version: 2
+
+profile: "dbt_snowflake"
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  dbt_snowflake:
+    internal:
+      +schema: internal
+      +materialized: table
+    stage:
+      +schema: stage
+      +materialized: table
+    processed:
+      +schema: processed
+      +materialized: table
+
+seeds:
+  +enabled: true
+  dbt_snowflake:
+    +schema: internal
+    salt:
+      salt: varchar(10)
+    anonymization_mapping:
+      schema_name: varchar(20)
+      table_name: varchar(20)
+      column_name: varchar(40)
+      target_function: varchar(10)
+      target_type: varchar(20)
+
+query-comment:
+  comment: "snowflake_dagster_dbt_v1_opaque_id[[[{{ node.unique_id }}:{{ invocation_id }}]]]"
+  append: true

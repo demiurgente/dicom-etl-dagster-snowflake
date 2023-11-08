@@ -1,0 +1,24 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Implementation of medical image parser from DICOM files using AWS Lambda.
+  Application downloads files from s3, retreives original images and uploads back to specified location. 
+  Currently compression is hardcoded to JPEG, Luma8 Grayscale.
+
+Globals:
+  Function:
+    Architectures:
+      - arm64
+    Handler: rust
+    Runtime: provided.al2
+    Timeout: 3
+
+Resources:
+  MyFunction:
+    Type: AWS::Serverless::Function
+    Metadata:
+      BuildMethod: rust-cargolambda
+    Properties:
+      CodeUri: .
+      Handler: bootstrap
+      Runtime: provided.al2
