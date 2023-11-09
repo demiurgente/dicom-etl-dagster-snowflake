@@ -83,7 +83,7 @@ During the development I discovered that data conversion in python was fairly sl
 
 To address upload/insert constraints it is critical to establish rules that support reliable long-term scaling and will not cause downtime, usually, it is done by reducing the inflow of data by either artificially queueing transformation and storing information in a service such as **Kafka** or by splitting data by a certain filter such as `company_name` or `YYYY_mm` type reducing irrelevant information and processing a limited set of data that can be easily taken into memory. Former is more commonly used by data processing where subsecond latencies are preferred (e.g. backends) and are considered state of the art, however, for Big Data processing it is more common to focus on the development of data processing strategy, rather than custom queue extraction algorithms. The strategy requires understanding the nature of data and processing constraints (tools, services, latencies).
 
-### Orchestration Setup
+## Orchestration Setup
 
 Commonly data is distributed by means of using **S3** buckets, elastic data storage that is updated with new files and can be shared with specific access rights (read-only) upon agreement. In our case, the start of the pipeline begins once _data provider_ has uploaded DICOM files to their `external` bucket. We will have a sensor that will check for new arrivals and kick off a job to copy files to our `raw` **S3** bucket once it has identified a group of new files. Current orchestration setup and monitoring tools are essential for process recovery, transparency, and ease of development - **Dagster** would be used in order to visually decompose processes and dig down to specific parts of the pipeline, as well as recovering failures. It offers multiple tools to control for orchestration setup, however, I mostly focused on reactive execution using sensors to automate the upload process as well as `AutoMaterialization`, which essentially materializes a table once its dependencies are met. Bird's eye view over the process can be described as follows:
 
@@ -94,25 +94,25 @@ Commonly data is distributed by means of using **S3** buckets, elastic data stor
 
 The compression step is necessary we have to compress medical scan data (convert from binary to JPEG images) as their size can grow up to `4GB` in a single file.
 
-### Raw Data Processing Layer
+#### Raw Data Processing Layer
 
 Those assets are essentially source files with minimal changes that Python has processed by selecting corresponding [columns](./services/dicom-pipeline/dicom_pipeline/assets/raw/devices.py) from the **DICOM** file that relate to a specific asset, however, the main idea of this step is to compress sources into a format that is easier to handle - a partitioned parquet, as well as to provide sources for database through **dbt** under `raw` schema to perform proper conversions and PII cleaning. The next stages are automated, they will materialize once either the lambda job or `raw` table dependency has been met.
 
 ![Raw Assets](./resources/Asset_Group_raw.svg)
 
-### Staged Layer
+#### Staged Layer
 
 The stage layer should collect `raw` data as is, in order to preserve historical scans locally and have the possibility to recover information downstream. In our case, there are some aspects that we have to change to push data forward: PII information (medics, patients), introduce typing rules and cast columns to the target type, split data into different tables; declared [here](./services/dicom-pipeline/dicom_pipeline/assets/raw/). The main idea is to collect `raw` medical data processing (identify tables, remove PII, convert types, compress data, and publish to `stage` **S3** bucket and `stage` schema inside SQLite database (**Snowflake**)), as well as to obtain **S3** data from the previous compress images step and load it into `compressed_images` tables. The stage processing layer collects cleansed and typed data from the previous step and combines it to produce either `dimension` or `fact` tables to the `processed` layer.
 
 ![Raw Assets](./resources/Asset_Group_stage.svg)
 
-### Processed Layer
+#### Processed Layer
 
 Finally, the last layer is the production schema that corresponds to different combinations of `fact` and `dimension` tables to produce tables that include all required information and facilitate the development process for stakeholders. This layer aims to deliver a valuable, structured, and well-decoupled set of datasets to query and update information, as well as to get enriched data to drive better decision-making. At this layer data is accessed for more complex aggregates for analysis, and tracking changes. Depending on the business case those transformations help you build DWH that corresponds to the needs of the stakeholders. In our example, we create [`processed_images`](./services/dicom-pipeline/dicom_pipeline/assets/processed/processed_images.py) table that combines both details for a specific medical procedure and compressed pictures showing the scan data, so that ML engineers can discover all corresponding information to medical imaging method.
 
 ![Processed Assets](./resources/Asset_Group_processed.svg)
 
-### Notification and Monitoring System
+#### Notification and Monitoring System
 
 In terms of callbacks on failures, I chose **Slack** and [Healthcheck](https://healthchecks.io/docs/self_hosted_configuration/) bindings, the former for the immediate intervention from developers to manually observe and fix bugs, while the latter would be useful for the production version and can be configured to track latencies across different pipeline stages. Those monitoring tools can be sufficient to set up an initial POC pipeline that could notify server-side, computing problems that have occurred during the processing early on. Later I would consider introducing **Graphana**, and **Prometheus** for application monitoring, as well as a subset of tools to preserve schema across data layers such as **Confluent Schema Registry**.
 
